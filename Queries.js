@@ -283,12 +283,35 @@ OUTPUT:
 8. Find all products which contain the value of soft in product material 
 
 QUERY:
-db.Products.find({ product_material: { $in: ["soft"] } })
-db.Products.find({ product_material: "soft" })
-
+db.Products.find({ "product_material":{$regex:/soft/i} });
 
 OUTPUT:
-
+[
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899df'),
+    id: '4',
+    product_name: 'Gorgeous Plastic Pants',
+    product_price: 492,
+    product_material: 'Soft',
+    product_color: 'plum'
+  },
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899e6'),
+    id: '11',
+    product_name: 'Unbranded Wooden Cheese',
+    product_price: 26,
+    product_material: 'Soft',
+    product_color: 'black'
+  },
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899ee'),
+    id: '19',
+    product_name: 'Intelligent Cotton Chips',
+    product_price: 46,
+    product_material: 'Soft',
+    product_color: 'azure'
+  }
+]
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
