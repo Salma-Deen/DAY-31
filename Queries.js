@@ -212,4 +212,101 @@ OUTPUT:
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
- 6.
+6. Find the product with a row id of 10
+
+QUERY:
+db.Products.findOne({ id: "10" });
+
+OUTPUT:
+{
+ _id: ObjectId('66cb4794ba3c74a5dc4899e5'),
+ id: '10',
+ product_name: 'Generic Wooden Pizza',
+ product_price: 84,
+ product_material: 'Frozen',
+ product_color: 'indigo'
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+7. Find only the product name and product material
+
+QUERY:
+db.Products.find({}, { product_name: 1, product_material: 1, _id: 0 });
+
+OUTPUT:
+[
+  {
+    product_name: 'Intelligent Fresh Chips',
+    product_material: 'Concrete'
+  },
+  {
+    product_name: 'Practical Fresh Sausages',
+    product_material: 'Cotton'
+  },
+  { product_name: 'Refined Steel Car', product_material: 'Rubber' },
+  { product_name: 'Gorgeous Plastic Pants', product_material: 'Soft' },
+  { product_name: 'Sleek Cotton Chair', product_material: 'Fresh' },
+  {
+    product_name: 'Awesome Wooden Towels',
+    product_material: 'Plastic'
+  },
+  { product_name: 'Practical Soft Shoes', product_material: 'Rubber' },
+  { product_name: 'Incredible Steel Hat', product_material: 'Rubber' },
+  { product_name: 'Awesome Wooden Ball', product_material: 'Soft' },
+  { product_name: 'Generic Wooden Pizza', product_material: 'Frozen' },
+  { product_name: 'Unbranded Wooden Cheese', product_material: 'Soft' },
+  {
+    product_name: 'Unbranded Plastic Salad',
+    product_material: 'Wooden'
+  },
+  {
+    product_name: 'Gorgeous Cotton Keyboard',
+    product_material: 'Concrete'
+  },
+  { product_name: 'Incredible Steel Shirt', product_material: 'Metal' },
+  { product_name: 'Ergonomic Cotton Hat', product_material: 'Rubber' },
+  { product_name: 'Small Soft Chair', product_material: 'Cotton' },
+  { product_name: 'Incredible Metal Car', product_material: 'Fresh' },
+  { product_name: 'Licensed Plastic Bacon', product_material: 'Steel' },
+  {
+    product_name: 'Intelligent Cotton Chips',
+    product_material: 'Soft'
+  },
+  {
+    product_name: 'Handcrafted Wooden Bacon',
+    product_material: 'Concrete'
+  }
+]
+
+ -----------------------------------------------------------------------------------------------------------------------------------------
+
+8. Find all products which contain the value of soft in product material 
+
+QUERY:
+db.Products.find({ product_material: { $in: ["soft"] } })
+db.Products.find({ product_material: "soft" })
+
+
+OUTPUT:
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+        
+9. Find products which contain product color indigo  and product price 492.00
+
+QUERY:
+db.Products.find({product_color:{$eq:"indigo"}},{product_price:{$eq:492.00}})
+
+OUTPUT:
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+10. Delete the products which product price value are 28
+
+QUERY:
+
+OUTPUT:
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
