@@ -305,8 +305,9 @@ OUTPUT:
 10. Delete the products which product price value are 28
 
 QUERY:
+db.Products.deleteOne({product_price:28})
 
 OUTPUT:
-
+{ acknowledged: true, deletedCount: 0 }
 
 ------------------------------------------------------------------------------------------------------------------------------------------
