@@ -1,7 +1,7 @@
 1.Find all the information about each products.
 
 QUERY:
-db.Products.find();
+ db.Products.find();
 
 OUTPUT:
 All products will be displayed with unique _id.
@@ -9,9 +9,9 @@ All products will be displayed with unique _id.
 2. Find the product price which are between 400 to 800
 
 QUERY:
-db.Products.find({ product_price: { $gte: 400, $lte: 800 } })
+ db.Products.find({ product_price: { $gte: 400, $lte: 800 } })
         (or)     
-db.Products.find({ $and: [{ product_price: { $gte: 400 } }, { product_price: { $lte: 800 } }] });
+ db.Products.find({ $and: [{ product_price: { $gte: 400 } }, { product_price: { $lte: 800 } }] });
 
 OUTPUT:
 [
@@ -62,7 +62,7 @@ OUTPUT:
 3. Find the product price which are not between 400 to 600
 
 QUERY:
-db.Products.find({ product_price: { $not: { $gte: 600, $lte: 400 } } })
+ db.Products.find({ product_price: { $not: { $gte: 600, $lte: 400 } } })
 
 OUTPUT:
 All Data is Displayed except id:{4,6,7} 
@@ -72,14 +72,40 @@ All Data is Displayed except id:{4,6,7}
 4. List the four product which are greater than 500 in price 
  
 QUERY:
+ db.Products.find({ product_price: { $gt: 500 } }).limit(4)
 
-OUTPUT:
-
+OUTPUT: [There are only 3 products where the product_price is greater than 500]
+[
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899dc'),
+    id: '1',
+    product_name: 'Intelligent Fresh Chips',
+    product_price: 655,
+    product_material: 'Concrete',
+    product_color: 'mint green'
+  },
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899dd'),
+    id: '2',
+    product_name: 'Practical Fresh Sausages',
+    product_price: 911,
+    product_material: 'Cotton',
+    product_color: 'indigo'
+  },
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899de'),
+    id: '3',
+    product_name: 'Refined Steel Car',
+    product_price: 690,
+    product_material: 'Rubber',
+    product_color: 'gold'
+  }
+]
 ------------------------------------------------------------------------------------------------------------------------------------------------
 5.Find the product name and product material of each products
 
 QUERY:
-db.Products.find({},{product_name:1,product_material:1});
+ db.Products.find({},{product_name:1,product_material:1});
 
 OUTPUT:
 [
@@ -215,7 +241,7 @@ OUTPUT:
 6. Find the product with a row id of 10
 
 QUERY:
-db.Products.findOne({ id: "10" });
+ db.Products.findOne({ id: "10" });
 
 OUTPUT:
 {
@@ -231,7 +257,7 @@ OUTPUT:
 7. Find only the product name and product material
 
 QUERY:
-db.Products.find({}, { product_name: 1, product_material: 1, _id: 0 });
+ db.Products.find({}, { product_name: 1, product_material: 1, _id: 0 });
 
 OUTPUT:
 [
@@ -283,7 +309,7 @@ OUTPUT:
 8. Find all products which contain the value of soft in product material 
 
 QUERY:
-db.Products.find({ "product_material":{$regex:/soft/i} });
+ db.Products.find({ "product_material":{$regex:/soft/i} });
 
 OUTPUT:
 [
@@ -321,6 +347,7 @@ OUTPUT:
 db.products.find({ $and: [ {"product_color": "indigo" }, {"product_price" :492.00 } ] })
 Using $and operator returns empty command
 But using $or operator gives the output.
+
 QUERY:
  db.Products.find({$or:[{ product_color: "indigo" }, { product_price: 492.00 }]})
 
