@@ -318,17 +318,61 @@ OUTPUT:
         
 9. Find products which contain product color indigo  and product price 492.00
 
+db.products.find({ $and: [ {"product_color": "indigo" }, {"product_price" :492.00 } ] })
+Using $and operator returns empty command
+But using $or operator gives the output.
 QUERY:
-db.Products.find({product_color:{$eq:"indigo"}},{product_price:{$eq:492.00}})
+ db.Products.find({$or:[{ product_color: "indigo" }, { product_price: 492.00 }]})
 
 OUTPUT:
-
+[
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899dd'),
+    id: '2',
+    product_name: 'Practical Fresh Sausages',
+    product_price: 911,
+    product_material: 'Cotton',
+    product_color: 'indigo'
+  },
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899df'),
+    id: '4',
+    product_name: 'Gorgeous Plastic Pants',
+    product_price: 492,
+    product_material: 'Soft',
+    product_color: 'plum'
+  },
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899e5'),
+    id: '10',
+    product_name: 'Generic Wooden Pizza',
+    product_price: 84,
+    product_material: 'Frozen',
+    product_color: 'indigo'
+  },
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899ec'),
+    id: '17',
+    product_name: 'Incredible Metal Car',
+    product_price: 36,
+    product_material: 'Fresh',
+    product_color: 'indigo'
+  },
+  {
+    _id: ObjectId('66cb4794ba3c74a5dc4899f4'),
+    id: '25',
+    product_name: 'Licensed Steel Car',
+    product_price: 20,
+    product_material: 'Cotton',
+    product_color: 'indigo'
+  }
+]
 --------------------------------------------------------------------------------------------------------------------------------------
 
 10. Delete the products which product price value are 28
 
 QUERY:
-db.Products.deleteOne({product_price:28})
+ db.Products.deleteOne({product_price:28})
 
 OUTPUT:
 { acknowledged: true, deletedCount: 0 }
